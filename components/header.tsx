@@ -12,14 +12,14 @@ export function Header() {
             <Link href="/" className="hover:text-muted-foreground transition-colors">
               posts
             </Link>
-            <Link href="/projetos" className="hover:text-muted-foreground transition-colors">
-              projetos
+            <Link href="/projects" className="hover:text-muted-foreground transition-colors">
+              projects
             </Link>
-            <Link href="/aprendizado" className="hover:text-muted-foreground transition-colors">
-              aprendizado
+            <Link href="/apprenticeship" className="hover:text-muted-foreground transition-colors">
+              apprenticeship
             </Link>
-            <Link href="/sobre" className="hover:text-muted-foreground transition-colors">
-              sobre
+            <Link href="/about-me" className="hover:text-muted-foreground transition-colors">
+              about me
             </Link>
           </div>
         </nav>

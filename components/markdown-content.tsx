@@ -1,13 +1,13 @@
 "use client"
 
 export function MarkdownContent({ content }: { content: string }) {
-  // Parse markdown simples
+  // Parse markdown simplely
   const lines = content.split("\n")
 
   return (
     <div className="prose prose-neutral max-w-none">
       {lines.map((line, i) => {
-        // Títulos
+        // Titles
         if (line.startsWith("# ")) {
           return (
             <h1 key={i} className="text-2xl font-bold mt-8 mb-4">
@@ -30,7 +30,7 @@ export function MarkdownContent({ content }: { content: string }) {
           )
         }
 
-        // Lista
+        // List
         if (line.startsWith("- ")) {
           return (
             <li key={i} className="ml-4 text-muted-foreground leading-relaxed">
@@ -39,12 +39,12 @@ export function MarkdownContent({ content }: { content: string }) {
           )
         }
 
-        // Parágrafo vazio
+        // Empty paragraph
         if (line.trim() === "") {
           return <div key={i} className="h-4" />
         }
 
-        // Parágrafo normal
+        // Normal paragraph
         return (
           <p key={i} className="text-foreground leading-relaxed mb-4">
             {line}

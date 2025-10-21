@@ -1,42 +1,24 @@
-const aprendizados = [
+const learnings = [
   {
-    title: "Next.js 15 & App Router",
-    status: "estudando",
-    description: "Aprendendo sobre Server Components, Server Actions e o novo modelo de roteamento.",
-    date: "2025-01",
-  },
-  {
-    title: "TypeScript Avançado",
-    status: "estudando",
-    description: "Tipos utilitários, generics, type guards e patterns avançados.",
-    date: "2025-01",
-  },
-  {
-    title: "Design Patterns",
-    status: "concluído",
-    description: "Estudei os principais design patterns e quando aplicá-los.",
-    date: "2024-12",
-  },
-  {
-    title: "PostgreSQL & SQL",
-    status: "concluído",
-    description: "Fundamentos de SQL, queries complexas, índices e otimização.",
-    date: "2024-11",
+    title: "AWS Certified Developer – Associate",
+    status: "studying",
+    description: "Validates skills in developing, deploying, and maintaining secure and scalable applications on AWS.",
+    date: "08-2025",
   },
 ]
 
-export default function AprendizadoPage() {
+export default function ApprenticeshipPage() {
   return (
     <div className="container mx-auto max-w-3xl px-4 py-12">
       <div className="mb-12">
-        <h1 className="text-2xl font-bold mb-2">Aprendizado</h1>
+        <h1 className="text-2xl font-bold mb-2">Apprenticeship</h1>
         <p className="text-muted-foreground leading-relaxed">
-          Tecnologias, conceitos e habilidades que estou estudando ou já aprendi.
+          Technologies, concepts and skills that I am studying or have already learned.
         </p>
       </div>
 
       <div className="space-y-6">
-        {aprendizados.map((item, i) => (
+        {learnings.map((item, i) => (
           <article key={i} className="group">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-24">

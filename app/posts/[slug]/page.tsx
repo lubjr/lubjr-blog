@@ -23,7 +23,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         href="/posts"
         className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 mb-8"
       >
-        <span>←</span> voltar
+        <span>←</span> back
       </Link>
 
       <article>
@@ -44,7 +44,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           href="/posts"
           className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
         >
-          <span>←</span> ver todos os posts
+          <span>←</span> see all posts
         </Link>
       </footer>
     </div>

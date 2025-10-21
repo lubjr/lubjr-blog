@@ -9,7 +9,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "dev.log",
-  description: "Minha jornada de aprendizado e evolução",
+  description: "My journey of learning and evolution",
   generator: "v0.app",
 }
 
@@ -19,10 +19,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="en">
       <body className={`${geistMono.className} font-mono antialiased`}>
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main>{children}</main>
         <Analytics />
       </body>
     </html>

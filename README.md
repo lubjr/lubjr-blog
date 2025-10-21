@@ -1,44 +1,42 @@
-# Blog Pessoal
+## How to add posts
 
-Blog minimalista estilo terminal para documentar aprendizado e evolução de carreira.
+Edit the `lib/posts.ts` file and add a new object to the `posts` array:
 
-## Como adicionar posts
-
-Edite o arquivo `lib/posts.ts` e adicione um novo objeto ao array `posts`:
-
-\`\`\`typescript
+```bash
 {
-  slug: "nome-do-post",
-  title: "Título do Post",
-  date: "2025-01-15",
-  category: "categoria",
-  excerpt: "Breve descrição do post",
-  content: `# Título
+  slug: "post-name",
+  title: "Post Title",
+  date: "mm/dd/year",
+  category: "category",
+  excerpt: "Brief description of the post",
+  content: ` 
 
-Seu conteúdo em markdown aqui...
+# Title
 
-## Subtítulo
+Your markdown content here...
 
-Mais conteúdo...`
+## Caption
+
+More content...`
 }
-\`\`\`
+```
 
-## Categorias disponíveis
+## Available categories
 
-- reflexões
-- aprendizado
-- projetos
-- tutoriais
-- geral
+- reflections
+- learning
+- projects
+- tutorials
+- general
 
-Você pode criar novas categorias simplesmente usando um novo nome no campo `category`.
+You can create new categories simply by using a new name in the `category` field.
 
-## Estrutura
+## Structure
 
-- `lib/posts.ts` - Array com todos os posts
-- `app/` - Páginas Next.js
-- `components/` - Componentes React
+- `lib/posts.ts` - Array with all posts
+- `app/` - Next.js pages
+- `components/` - React components
 
 ## Deploy
 
-O site é totalmente estático e pode ser deployado na Vercel com um clique.
+The site is completely static and can be deployed to Vercel with one click.

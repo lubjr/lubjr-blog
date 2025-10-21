@@ -8,15 +8,15 @@ export default function PostsPage() {
   return (
     <div className="container mx-auto max-w-3xl px-4 py-12">
       <div className="mb-12">
-        <h1 className="text-2xl font-bold mb-2">Todos os posts</h1>
+        <h1 className="text-2xl font-bold mb-2">All posts</h1>
         <p className="text-muted-foreground">
-          {posts.length} {posts.length === 1 ? "post" : "posts"} publicados
+          {posts.length} {posts.length === 1 ? "post" : "posts"} published
         </p>
       </div>
 
       <div className="mb-8 flex gap-3 flex-wrap">
         <Link href="/posts" className="text-sm px-3 py-1 bg-primary text-primary-foreground">
-          todos
+          all
         </Link>
         {categories.map((category) => (
           <Link
