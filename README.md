@@ -28,6 +28,7 @@ More content...`
 - projects
 - tutorials
 - general
+- development
 
 You can create new categories simply by using a new name in the `category` field.
 
