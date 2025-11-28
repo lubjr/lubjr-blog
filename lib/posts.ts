@@ -69,6 +69,58 @@ const posts: Post[] = [
   ## Conclusion
 
   The coexistence of technologies from different generations is a reality in software development. While it's tempting to seek quick solutions when there's deadline pressure, investing in refactoring and technical modernization significantly reduces technical debt and facilitates future maintenance. The ideal is to maintain architectural consistency, using patterns and tools compatible with the application's main paradigm.`,
+  },
+  {
+    slug: "using-tools-that-will-steal-our-jobs",
+    title: "Using the Tools That Will Steal Our Jobs",
+    date: "11-27-2025",
+    category: "development",
+    excerpt: "A candid experiment with AI-powered development tools and what it means for productivity, quality, and the future of coding.",
+    content: `I decided to write a quick post without overthinking complex narratives. Nothing groundbreaking here—no debugging sagas or computational logic deep dives. Just a straightforward take on something we're all already doing.
+
+  ## The Reality Check
+
+  Let's be honest: AI tools are everywhere now. Developers use them. Designers use them. Writers use them. It's not a question of *if* anymore, but *how*.
+
+  This week, I had a simple problem: **no time to code**. My side project, [saedra](https://github.com/lubjr/saedra) (I'll write a proper post about it eventually), was collecting dust while work demands piled up. So I did what many of us are doing now—I paid for Claude and put it to work.
+
+  ## The Experiment
+
+  Here's what happened:
+
+  **Last week:** A feature sat incomplete because I had no time to finish it.
+
+  **This week:** Using Claude Code, the AI created a complete commit, pushed it to a branch, and basically shipped the feature.
+
+  Yes, you read that right. The tool:
+  - Analyzed the codebase
+  - Implemented the feature
+  - Created a commit
+  - Published to the repository
+
+  My role? Reviewing the code, fixing a few details, adjusting the structure. That's it.
+
+  ## What Does This Mean?
+
+  I'm still processing this. On one hand, I delivered something in days that would have taken me weeks given my current schedule. On the other hand, it raises questions:
+
+  - How much of this was "my work"?
+  - What does productivity even mean now?
+  - Where's the line between assistance and replacement?
+
+  I don't have answers yet. But I'm committed to documenting this journey—both the velocity gains and the quality implications.
+
+  ## See For Yourself
+
+  The commits are public if you want to judge the results:
+  - [Commit 1](https://github.com/lubjr/saedra/commit/8baf75a822ad5fe4b7db7f699ea345a6809844cf)
+  - [Commit 2](https://github.com/lubjr/saedra/commit/7c276a1c39679820b155b10a57d4faf380edcfa8)
+
+  ---
+
+  **Next in this series:** Can we actually maintain code quality while dramatically increasing delivery speed with AI? I'll find out over the next few weeks and report back.
+
+  *What's your take? Are you using AI tools in your workflow? How's that going?*`,
   }
 ]
 
