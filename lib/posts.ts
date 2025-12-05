@@ -121,7 +121,89 @@ const posts: Post[] = [
   **Next in this series:** Can we actually maintain code quality while dramatically increasing delivery speed with AI? I'll find out over the next few weeks and report back.
 
   *What's your take? Are you using AI tools in your workflow? How's that going?*`,
-  }
+  },
+  {
+  slug: "playwright-testing-modern-web",
+  title: "Playwright: Testing That Actually Works",
+  date: "12-04-2025",
+  category: "development",
+  excerpt: "Why I switched to Playwright for end-to-end testing and never looked back.",
+  content: `I've been playing around with Playwright lately, and honestly? It's been a game changer for testing web applications.
+
+  Playwright solves most of these problems by design. It's Microsoft's end-to-end testing framework, and it just... works.
+
+  ## What Makes It Different
+
+  **Auto-waiting**: No more sleep(5000) or guessing timeouts. Playwright waits for elements to be ready automatically.
+
+  **Browser contexts**: Each test runs isolated. No cookies leaking, no state pollution between tests.
+
+  **Cross-browser**: Same code works on Chromium, Firefox, and WebKit. No extra setup needed.
+
+  **Debugging**: When tests fail, the trace viewer shows you exactly what happened—DOM snapshots, network requests, console logs, everything.
+
+  ## Simple Examples
+
+  Here's what a basic test looks like:
+
+  test('user can login', async ({ page }) => {
+    await page.goto('https://myapp.com/login');
+    await page.fill('input[name="email"]', 'user@example.com');
+    await page.fill('input[name="password"]', 'password123');
+    await page.click('button[type="submit"]');
+    await expect(page).toHaveURL(/dashboard/);
+  });
+
+  Clean, right? No complex selectors, no waiting logic. Just describe what you want to test.
+
+  **API mocking** is also stupid simple:
+
+  await page.route('**/api/users', route => {
+    route.fulfill({ status: 500, body: '{"error": "Server Error"}' });
+  });
+
+  Perfect for testing error states without touching the backend.
+
+  **Screenshots for visual testing**:
+
+  await expect(page).toHaveScreenshot('homepage.png');
+
+  Playwright compares it with your baseline and flags differences.
+
+  ## When to Use It
+
+  Use Playwright for:
+  - End-to-end user flows
+  - Cross-browser compatibility
+  - Visual regression testing
+  - Testing complex interactions
+
+  Don't use it for:
+  - Unit tests (stick with Jest/Vitest)
+  - Simple component tests
+  - Anything that doesn't need a real browser
+
+  ## Getting Started
+
+  Installation is dead simple:
+
+  npm init playwright@latest
+
+  That's it. The CLI sets everything up, installs browsers, creates example tests. No configuration hell.
+
+  ## Conclusion
+
+  Tests are reliable, debugging is fast, and I spend less time maintaining test infrastructure.
+
+  If you're still fighting with flaky tests or spending hours debugging, give Playwright a shot. It might change how you think about testing.
+
+  **Resources:**
+  - [Playwright Docs](https://playwright.dev)
+  - [Best Practices](https://playwright.dev/docs/best-practices)
+  - [GitHub](https://github.com/microsoft/playwright)
+
+  *Using Playwright already? What's been your experience? Would love to hear how it's working for you.*`,
+}
 ]
 
 export function getAllPosts(): Post[] {
