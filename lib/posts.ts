@@ -203,11 +203,63 @@ const posts: Post[] = [
   - [GitHub](https://github.com/microsoft/playwright)
 
   *Using Playwright already? What's been your experience? Would love to hear how it's working for you.*`,
-}
+  },
+  {
+  slug: "the-delayed-first-one-of-the-year",
+  title: "The first one of the year, running late",
+  date: "01-12-2026",
+  category: "reflections",
+  excerpt: "Reflections on my goals for the year, the Saedra project, and thoughts on living authentically as a developer—embracing simplicity, personality, and critical thinking.",
+  content: `I wanted to make a post talking a bit more about my perspectives and projects for this year: what are my goals, objectives, thoughts, and lifestyle.
+
+  I think it's worth mentioning that I've been developing Saedra since last year, back in mid-July. Its initial goal is to bring good code practices, good development organization, plenty of artificial intelligence for productivity use, and to carry current market technologies, encompassing the entire ecosystem of a modern application. It's entirely a study project, but I wanted to bring it up here to remember that it's one of the completion goals for this year.
+
+  I had several insights at the beginning of this year, one of the most interesting being about lifestyle. I've been thinking about having a simpler life — not in terms of money, but in terms of style itself. Doing what works and being myself. I think that a large part of today's devs are inspired by minimalist professionals with aesthetic lifestyles ("aesthetic," as we young people say), and man, I feel like life is simple, you know? How about having your own opinion, being yourself, and not copying silly things? Perhaps there's a lack of personality in people, and I take this as self-criticism too.
+
+  Well, after getting sidetracked, let's get to the objectives then:
+
+  - Complete Saedra or develop it enough to be a portfolio of technology and personal knowledge.
+  - Remember that the basics work and it's enough to be yourself. Live simply.
+  - Finish my book and read others, if possible.
+  - Have patience in decisions and take risks too — you have to take risks or your life won't change.
+  - Show myself to the world, even if it's in my own way.
+  - Take other developments off paper and actually code.
+  - Live and have more experiences in general: culture, talking, and leaving the house also does good when you're in the right environment.
+
+  This isn't a manual, much less a step-by-step guide. It's just a light post, truly written by me, to remember that it's never too late to start and much less to change. We are beings of constant change and learning, and each person has a baggage of thoughts. But if you don't have this, go after it: have critical thinking and personality, because what will differentiate you from another person is your opinion, your values, and your decision-making.
+
+  ---
+
+  **Traduzido para português:**
+
+  # O Primeiro do Ano, Atrasado
+
+  Queria fazer um post falando um pouco mais sobre minhas perspectivas e projetos para esse ano: quais são minhas metas, objetivos, pensamento e estilo de vida.
+
+  Acho legal pontuar que já venho desenvolvendo o Saedra desde o ano passado, lá em meados de julho. O objetivo inicial dele é trazer boas práticas de código, uma boa organização de desenvolvimento, bastante inteligência artificial para uso de produtividade, e carregar as tecnologias atuais do mercado, englobando todo o ecossistema de uma aplicação moderna. É um projeto totalmente de estudo, mas quis levantá-lo aqui para lembrar que é uma das metas de finalização para esse ano.
+
+  Tive vários insights nesse começo de ano, um dos mais interessantes é sobre estilo de vida. Estive pensando em ter uma vida mais simples — não em questão de dinheiro, mas em questão de estilo mesmo. Fazer o que funciona e ser eu mesmo. Penso que grande parte dos devs de hoje se inspiram em profissionais minimalistas com estilos de vida estéticos ("aesthetic", como nós jovens dizemos), e cara, sinto que a vida é simples, sabe? Que tal ter sua opinião, ser você e não copiar coisas bobas? Talvez esteja faltando mais personalidade nas pessoas, e levo isso como uma autocrítica também.
+
+  Bom, depois de desviar do assunto, vamos aos objetivos então:
+
+  - Concluir o Saedra ou evoluí-lo o bastante para ser um portfólio de tecnologia e conhecimento pessoal.
+  - Me lembrar que o básico funciona e basta ser você. Viva o simples.
+  - Terminar meu livro e ler outros, se possível.
+  - Ter paciência nas decisões e arriscar também — você tem que correr riscos ou sua vida não muda.
+  - Me mostrar ao mundo, mesmo que seja do meu jeito.
+  - Tirar os outros desenvolvimentos do papel e codar de fato.
+  - Viver e ter mais experiências no geral: cultura, conversar e sair de casa também faz bem quando se está no ambiente certo.
+
+  Isso não é um manual, muito menos um passo a passo. É apenas um post leve, escrito de verdade por mim, para lembrar que nunca é tarde para começar e muito menos para mudar. Somos seres de constante mudança e aprendizado, e cada um tem uma bagagem de pensamentos. Mas se você não tem isso, corra atrás: tenha pensamento crítico e personalidade, pois o que irá diferenciar você de outra pessoa é a sua opinião, seus valores e sua tomada de decisão.`,
+  }
 ]
 
 export function getAllPosts(): Post[] {
-  return posts.sort((a, b) => (a.date > b.date ? -1 : 1))
+  return posts.sort((a, b) => {
+    const dateA = new Date(a.date)
+    const dateB = new Date(b.date)
+    return dateB.getTime() - dateA.getTime()
+  })
 }
 
 export function getPostBySlug(slug: string): Post | undefined {
