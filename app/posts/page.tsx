@@ -1,30 +1,35 @@
 import Link from "next/link"
 import { getAllPosts } from "@/lib/posts"
 
-export default function PostsPage() {
-  const posts = getAllPosts()
-  const categories = Array.from(new Set(posts.map((p) => p.category)))
+export default async function PostsPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+  const { category } = await searchParams
+  const allPosts = getAllPosts()
+  const posts = category ? allPosts.filter((p) => p.category === category) : allPosts
+  const categories = Array.from(new Set(allPosts.map((p) => p.category)))
 
   return (
     <div className="container mx-auto max-w-3xl px-4 py-12">
       <div className="mb-12">
-        <h1 className="text-2xl font-bold mb-2">All posts</h1>
+        <h1 className="text-2xl font-bold mb-2">{category ? `${category} posts` : 'All posts'}</h1>
         <p className="text-muted-foreground">
           {posts.length} {posts.length === 1 ? "post" : "posts"} published
         </p>
       </div>
 
       <div className="mb-8 flex gap-3 flex-wrap">
-        <Link href="/posts" className="text-sm px-3 py-1 bg-primary text-primary-foreground">
+        <Link
+          href="/posts"
+          className={`text-sm px-3 py-1 ${!category ? 'bg-primary text-primary-foreground' : 'border border-border hover:bg-secondary'} transition-colors`}
+        >
           all
         </Link>
-        {categories.map((category) => (
+        {categories.map((cat) => (
           <Link
-            key={category}
-            href={`/posts?category=${category}`}
-            className="text-sm px-3 py-1 border border-border hover:bg-secondary transition-colors"
+            key={cat}
+            href={`/posts?category=${cat}`}
+            className={`text-sm px-3 py-1 ${category === cat ? 'bg-primary text-primary-foreground' : 'border border-border hover:bg-secondary'} transition-colors`}
           >
-            {category}
+            {cat}
           </Link>
         ))}
       </div>

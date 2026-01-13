@@ -257,11 +257,8 @@ const posts: Post[] = [
 export function getAllPosts(): Post[] {
   return posts.sort((a, b) => {
 
-    const [monthA, dayA, yearA] = a.date.split('-')
-    const [monthB, dayB, yearB] = b.date.split('-')
-
-    const dateA = new Date(`${yearA}-${monthA}-${dayA}`)
-    const dateB = new Date(`${yearB}-${monthB}-${dayB}`)
+    const dateA = new Date(a.date)
+    const dateB = new Date(b.date)
 
     return dateB.getTime() - dateA.getTime()
   })
