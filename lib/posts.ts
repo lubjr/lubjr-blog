@@ -206,7 +206,7 @@ const posts: Post[] = [
   },
   {
   slug: "the-delayed-first-one-of-the-year",
-  title: "The first one of the year, running late",
+  title: "The First One of the Year, Running Late",
   date: "01-12-2026",
   category: "reflections",
   excerpt: "Reflections on my goals for the year, the Saedra project, and thoughts on living authentically as a developer—embracing simplicity, personality, and critical thinking.",
@@ -251,6 +251,108 @@ const posts: Post[] = [
   - Viver e ter mais experiências no geral: cultura, conversar e sair de casa também faz bem quando se está no ambiente certo.
 
   Isso não é um manual, muito menos um passo a passo. É apenas um post leve, escrito de verdade por mim, para lembrar que nunca é tarde para começar e muito menos para mudar. Somos seres de constante mudança e aprendizado, e cada um tem uma bagagem de pensamentos. Mas se você não tem isso, corra atrás: tenha pensamento crítico e personalidade, pois o que irá diferenciar você de outra pessoa é a sua opinião, seus valores e sua tomada de decisão.`,
+  },
+  {
+  slug: "category-typing-bug-spec-driven-development",
+  title: "How a Category Typing Bug Broke Every Form Input — and How Spec Driven Development Helped Us Find It",
+  date: "02-16-2026",
+  category: "development",
+  excerpt: "How a single category mismatch silently broke every input, select, and form field across a low-code platform — and how Spec Driven Development guided the debugging process.",
+  content: `This post walks through how a single category mismatch silently broke every input, select, and form field across a low-code platform — and how a Spec Driven Development (SDD) approach guided our debugging process toward the root cause.
+
+  ## Context: Spec Driven Development
+
+  I've been adopting SDD for both feature development and bug resolution. At its core, SDD structures AI-assisted work into deliberate phases: **research and requirements gathering**, **summarization of what needs to change (where and how)**, and finally **implementation**. The goal is precision — reducing noise in AI conversations and increasing output quality.
+
+  Recommended reading: [SDD Tools – Martin Fowler](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html)
+
+  This approach scales well. You can layer multiple context files throughout the resolution process, progressively narrowing the scope. Markdown (\`.md\`) files naturally become the default format due to their readability and ease of generation.
+
+  I won't go deep into SDD theory here — the focus is on how we applied it to solve a real production bug.
+
+  ## The Problem
+
+  **Important note:** I don't want to blame the developer who made these changes — everyone makes mistakes, and there was no way to predict this side effect. It was an unpredictable process. What I want to focus on here is how our debugging approach was productive in finding the root cause.
+
+  The platform is versioned with GitLab. During a series of component-level refactors, a developer changed the category check inside \`with-form.tsx\` from \`"FormInput"\` to \`"Form"\`. However, every form field in the JSON schema (Select, Input, etc.) still declared \`category: "FormInput"\`.
+
+  The consequence: the engine stopped recognizing those fields as form elements. \`processFormElement\` was never invoked, and \`formData.value.section\` was never populated on selection events.
+
+  On web (Preview mode), this likely went unnoticed because the schema is fetched from the Studio API at runtime — which may already use \`"Form"\`. On mobile, the embedded schema still referenced \`"FormInput"\`, breaking the entire form flow.
+
+  The fix: accept both categories — \`["FormInput", "Form"]\`.
+
+  ## The Resolution Process
+
+  **Phase 1 — Problem Contextualization & Research**
+
+  We created a \`/debug\` folder at the project root (git-ignored) and placed the relevant source files containing the app's core logic. I also took screenshots of the platform's UI so Claude could have visual context. From this, we generated \`pr-debug.md\` — a structured summary of the problem, the UI behavior, and the code involved.
+
+  **Phase 2 — Repository Contextualization**
+
+  We asked Claude to analyze the repository structure and produce \`pr-tauri.md\`, documenting its understanding of the codebase's functions and architecture.
+
+  **Phase 3 — Targeted Contextualization**
+
+  We pointed Claude to the specific commit we suspected and asked it to integrate those changes into \`pr-debug.md\` as a focal point for analysis.
+
+  **Phase 4 — Full Debug**
+
+  With all three context files in place, Claude had enough signal to trace the issue to its root cause. At this stage, the insight clicked — we confirmed it manually and applied the fix ourselves. That said, you could easily extend the process by generating a \`resolution.md\` and a \`changes.md\` to specify affected files and formalize the implementation steps.
+
+  ## Final Thoughts
+
+  That's the workflow. How do you use Spec Driven Development? Had you heard of it before? Would you approach the resolution differently?
+
+  ---
+
+  ## Versão em Português
+
+  Este post mostra como um simples erro de tipagem de categoria quebrou silenciosamente todos os inputs, selects e campos de formulário de uma plataforma low-code — e como o Spec Driven Development (SDD) nos guiou até a causa raiz.
+
+  ### Contexto: Spec Driven Development
+
+  Tenho adotado o SDD tanto para desenvolvimento de features quanto para resolução de bugs. Em essência, o SDD estrutura o trabalho assistido por IA em fases deliberadas: **pesquisa e levantamento de requisitos**, **resumo do que precisa mudar (onde e como)** e, por fim, **implementação**. O objetivo é precisão — reduzir ruído nas conversas com IA e aumentar a qualidade do output.
+
+  Leitura recomendada: [SDD Tools – Martin Fowler](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html)
+
+  A abordagem escala bem. Você pode adicionar múltiplos arquivos de contexto ao longo do processo, refinando o escopo progressivamente. Arquivos Markdown (\`.md\`) se tornam o formato natural pela facilidade de leitura e geração.
+
+  Não vou aprofundar na teoria do SDD aqui — o foco é mostrar como aplicamos o método para resolver um bug real em produção.
+
+  ### O Problema
+
+  **Nota importante:** não quero culpar o desenvolvedor que fez as alterações — todos cometem erros, e não havia como prever esse efeito colateral. Foi um processo imprevisível. O que eu quero focar aqui é como nossa abordagem de debug foi produtiva para encontrar a causa raiz.
+
+  A plataforma é versionada com GitLab. Durante uma série de refatorações nos componentes base, um desenvolvedor alterou a verificação de categoria em \`with-form.tsx\` de \`"FormInput"\` para \`"Form"\`. Porém, todos os campos de formulário no JSON schema (Select, Input, etc.) ainda declaravam \`category: "FormInput"\`.
+
+  A consequência: o engine parou de reconhecer esses campos como elementos de formulário. O \`processFormElement\` nunca era invocado, e o \`formData.value.section\` nunca era preenchido nos eventos de seleção.
+
+  Na web (modo Preview), isso provavelmente passou despercebido porque o schema é obtido da API do Studio em tempo real — que possivelmente já usava \`"Form"\`. No mobile, o schema embarcado ainda referenciava \`"FormInput"\`, quebrando todo o fluxo de formulários.
+
+  A correção: aceitar ambas as categorias — \`["FormInput", "Form"]\`.
+
+  ### O Processo de Resolução
+
+  **Fase 1 — Contextualização e Pesquisa do Problema**
+
+  Criamos uma pasta \`/debug\` na raiz do projeto (ignorada no git) e alocamos os arquivos-fonte relevantes contendo a lógica central do app. Também capturei screenshots da interface para que o Claude tivesse contexto visual. A partir disso, geramos o \`pr-debug.md\` — um resumo estruturado do problema, do comportamento da UI e do código envolvido.
+
+  **Fase 2 — Contextualização do Repositório**
+
+  Pedimos ao Claude para analisar a estrutura do repositório e produzir o \`pr-tauri.md\`, documentando seu entendimento sobre as funções e a arquitetura do codebase.
+
+  **Fase 3 — Contextualização Direcionada**
+
+  Apontamos o commit suspeito ao Claude e pedimos que integrasse essas mudanças ao \`pr-debug.md\` como ponto focal de análise.
+
+  **Fase 4 — Debug Completo**
+
+  Com os três arquivos de contexto prontos, o Claude tinha sinal suficiente para rastrear o problema até a causa raiz. Nesse ponto o insight veio — confirmamos manualmente e aplicamos a correção. Dito isso, o processo pode ser facilmente estendido gerando um \`resolution.md\` e um \`changes.md\` para especificar os arquivos afetados e formalizar os passos de implementação.
+
+  ### Considerações Finais
+
+  Esse foi o workflow. Como você usa o Spec Driven Development? Já tinha ouvido falar? Faria o processo de resolução de forma diferente?`,
   }
 ]
 
