@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { Sun, Moon } from "lucide-react"
 
 export function Header() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => setMounted(true), [])
@@ -33,11 +33,11 @@ export function Header() {
             </Link>
             {mounted && (
               <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
                 className="hover:text-muted-foreground transition-colors"
                 aria-label="toggle theme"
               >
-                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+                {resolvedTheme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
               </button>
             )}
           </div>
