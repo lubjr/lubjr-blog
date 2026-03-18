@@ -41,7 +41,7 @@ export default function AboutMePage() {
           </div>
 
           <p className="text-muted-foreground text-sm pt-8 border-t border-border">
-            This blog was built with Next.js 15, TypeScript, and Tailwind CSS.
+            This blog was built with Next.js 16, TypeScript, and Tailwind CSS.
           </p>
         </div>
       </div>
