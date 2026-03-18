@@ -2,8 +2,15 @@ import Link from "next/link"
 
 const projects = [
   {
+    title: "Saedra",
+    description: "Full-stack study project covering the entire ecosystem of a modern application — good code practices, development organization, and AI-assisted productivity.",
+    tech: ["TypeScript", "AI", "Full-stack"],
+    link: "https://github.com/lubjr/saedra",
+    date: "07-2025",
+  },
+  {
     title: "Personal Blog",
-    description: "This blog you're reading right now. Built with Next.js 15 and a minimalist design.",
+    description: "This blog you're reading right now. Built with Next.js 16 and a minimalist design.",
     tech: ["Next.js", "TypeScript", "Tailwind"],
     link: "/",
     date: "10-2025",
