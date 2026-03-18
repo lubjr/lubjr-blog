@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "dev.log",
   description: "My journey of learning and evolution",
   generator: "v0.app",
+  icons: {
+    icon: "/favicon.svg",
+  },
 }
 
 export default function RootLayout({
