@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
+import { Sun, Moon } from "lucide-react"
 
 export function Header() {
   const { theme, setTheme } = useTheme()
@@ -36,7 +37,7 @@ export function Header() {
                 className="hover:text-muted-foreground transition-colors"
                 aria-label="toggle theme"
               >
-                {theme === "dark" ? "light" : "dark"}
+                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
               </button>
             )}
           </div>
