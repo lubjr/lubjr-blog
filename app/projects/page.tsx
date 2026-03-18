@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { ProjectPreview } from "@/components/project-preview"
 
 const projects = [
   {
@@ -7,6 +8,7 @@ const projects = [
     tech: ["TypeScript", "AI", "Full-stack"],
     link: "https://github.com/lubjr/saedra",
     date: "07-2025",
+    liveUrl: "https://www.saedra.pro/",
   },
   {
     title: "Personal Blog",
@@ -14,6 +16,7 @@ const projects = [
     tech: ["Next.js", "TypeScript", "Tailwind"],
     link: "/",
     date: "10-2025",
+    liveUrl: "https://www.lubjr.dev",
   },
 ]
 
@@ -43,6 +46,9 @@ export default function ProjectsPage() {
               )}
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-3">{project.description}</p>
+            {"liveUrl" in project && project.liveUrl && (
+              <ProjectPreview url={project.liveUrl} title={project.title} />
+            )}
             <div className="flex gap-2 flex-wrap">
               {project.tech.map((tech) => (
                 <span key={tech} className="text-xs px-2 py-1 bg-secondary text-secondary-foreground">
