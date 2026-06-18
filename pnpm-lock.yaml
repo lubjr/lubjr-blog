@@ -14,6 +14,9 @@ importers:
       '@vercel/analytics':
         specifier: latest
         version: 1.5.0(next@16.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
+      animejs:
+        specifier: ^4.4.1
+        version: 4.4.1
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.0)
@@ -744,6 +747,9 @@ packages:
         optional: true
       vue-router:
         optional: true
+
+  animejs@4.4.1:
+    resolution: {integrity: sha512-XimhJw4vPb6tAd6Zaoa6BaspJ8UteQMKvL7Pvrt6MW/6u2UvJs0TB/LLqR1sigaiYvpVPC3Tokr9emcCMhWFhw==}
 
   argparse@1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
@@ -2085,6 +2091,8 @@ snapshots:
     optionalDependencies:
       next: 16.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
+
+  animejs@4.4.1: {}
 
   argparse@1.0.10:
     dependencies:

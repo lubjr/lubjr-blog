@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { getAllPosts } from "@/lib/posts"
+import { WalkingDog } from "@/components/walking-dog"
 
 export default function HomePage() {
   const posts = getAllPosts()
@@ -37,13 +38,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mt-12 pt-8 border-t border-border">
-        <Link
-          href="/posts"
-          className="text-sm hover:text-muted-foreground transition-colors inline-flex items-center gap-2"
-        >
-          see all posts <span>→</span>
-        </Link>
+      <div className="mt-12">
+        <WalkingDog />
+        <div className="pt-8">
+          <Link
+            href="/posts"
+            className="text-sm hover:text-muted-foreground transition-colors inline-flex items-center gap-2"
+          >
+            see all posts <span>→</span>
+          </Link>
+        </div>
       </div>
     </div>
   )
