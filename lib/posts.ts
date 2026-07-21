@@ -353,6 +353,66 @@ I don't have answers yet. But I'm committed to documenting this journey—both t
   ### Considerações Finais
 
   Esse foi o workflow. Como você usa o Spec Driven Development? Já tinha ouvido falar? Faria o processo de resolução de forma diferente?`,
+  },
+  {
+    slug: "the-basics-nobody-skips",
+    title: "The Basics Nobody Skips",
+    date: "07-20-2026",
+    category: "development",
+    excerpt: "A frontend AI workflow that skipped every basic step (tokens, patterns, components) and how the fix turned into a full refactor.",
+    content: `I wanted to write something quick here today. I've been quiet for a while, a migration process at work has kept me too busy to leave my mind free for reflecting on development or anything else.
+
+Lately I keep running into the same basic problem, over and over: AI has made it easy to skip the fundamentals of building a product. The whole development process is now accelerated, taking steps bigger than what the team can actually support, as if everything were possible with a few loose instructions and the expectation of extreme results built on very little validation.
+
+I don't want to "demonize" AI. It only executes a sequence of prompts defined by whoever is using it. It can't weigh with any clarity which path is actually the best one to follow given the requirements, because that's a business decision, or at the very least a code quality decision.
+
+## The Problem
+
+My recent problem with AI was on the frontend side. The flow looked like this: UX designs a prototype → the sprint gets built around it → AI breaks it down and generates a flow → dev implements it. The problem: the prototype was always the source of truth. AI never knew whether a component already existed on another screen. It centralized nothing: no tokens, no patterns, no colors. By the end of every sprint, screens had small details diverging from other screens. That's one of the most basic problems in development: a missing standard, and a component process that hadn't matured yet.
+
+## The Fix
+
+The fix ended up taking a lot more than centralizing components and defining tokens.
+
+"First came an actual audit: scanning the whole codebase for hardcoded hex colors versus token references, arbitrary color and size classes, missing font loads, and how many competing brand colors were floating around uncoordinated. Numbers like that are hard to argue with in a planning meeting.
+
+Then came a shared component library as the real foundation, one every app in the codebase would consume, built before touching a single existing screen. Everything after that shipped in phases, additive, not a big-bang rewrite: convergence of the competing brand colors onto tokens first (highest visual impact, lowest structural risk), then consolidating every duplicated primitive, three different toasts, more than a dozen modal wrappers, half a dozen badge and pill variants, one at a time, smallest risk first, one commit per component. Only after that did the hex-to-token conversion happen, module by module.
+
+One important lesson from this process: before migrating any duplicated component, do a full inventory of every place it's actually used first. A handful of inline instances were nearly missed because a build tool wasn't scanning every file, something that could have gone unnoticed until it surfaced in production.
+
+The last step was a CI guardrail: a lint rule that fails any pull request reintroducing a hardcoded color or a spacing value outside the grid. We deliberately turned that on only after the bulk of the migration was done, so it wouldn't slow the team down mid-migration."
+
+It's still in progress. What started as "fix the divergence" quietly became a full design system migration. So here's the lesson I'm taking from this: always do the basics first, and get the structure right, before you start writing code with AI.
+
+---
+
+**Traduzido para português:**
+
+# O Básico que Ninguém Deveria Pular
+
+Hoje eu queria escrever um trecho rápido aqui no blog. Andei sumido por um tempo, um processo de migração no trabalho me deixou ocupado demais para ter a mente livre para refletir sobre desenvolvimento ou qualquer outra coisa.
+
+Ultimamente venho esbarrando no mesmo problema básico, repetidas vezes: a inteligência artificial facilitou pular as etapas fundamentais na construção de um produto. Todo o processo de desenvolvimento está acelerado, dando passos maiores que a perna, como se tudo fosse possível com algumas instruções soltas e a expectativa de resultados extremos construídos em cima de pouquíssima validação.
+
+Não quero "demonizar" a IA. Ela apenas executa uma sequência de prompts definidos por quem está usando. Ela não consegue ponderar com clareza qual é o melhor caminho a seguir com base nos requisitos, porque isso é uma decisão de negócio, ou no mínimo uma decisão de qualidade de código.
+
+## O Problema
+
+Meu problema recente com IA foi no frontend. O fluxo era mais ou menos assim: UX define um protótipo → a sprint é montada em cima disso → a IA destrincha e gera um fluxo → o dev implementa. O problema: o protótipo sempre era a fonte de verdade. A IA nunca sabia se aquele componente já existia em outra tela. Ela não centralizava nada: nem tokens, nem padrões, nem cores. No final de cada sprint, as telas acumulavam pequenos detalhes divergentes entre si. Esse é um dos problemas mais básicos que existem em desenvolvimento: falta de padrão e um processo de componentização que ainda não tinha amadurecido.
+
+## A Solução
+
+A solução acabou exigindo bem mais do que centralizar componentes e definir tokens.
+
+"Primeiro veio uma auditoria de verdade: varrer o código inteiro atrás de cores em hexadecimal cravadas versus referências a token, classes de cor e tamanho arbitrárias, fonte que nunca era carregada, e quantas cores de marca concorrentes estavam soltas sem coordenação nenhuma. Números assim são difíceis de contestar numa reunião de planejamento.
+
+Depois veio uma biblioteca de componentes compartilhada como fundação de verdade, consumida por todos os apps do código, construída antes de tocar em qualquer tela existente. Tudo depois disso saiu em fases, de forma aditiva, sem reescrita de uma vez só: primeiro a convergência das cores de marca concorrentes para os tokens (maior impacto visual, menor risco estrutural), depois a consolidação de cada primitivo duplicado, três toasts diferentes, mais de uma dúzia de wrappers de modal, meia dúzia de variações de badge e pill, um de cada vez, do menor para o maior risco, um commit por componente. Só depois disso veio a conversão de hex para token, módulo por módulo.
+
+Uma lição importante desse processo: antes de migrar qualquer componente duplicado, fazer o inventário completo de todo lugar onde ele é usado primeiro. Um punhado de instâncias inline quase passou despercebido porque uma ferramenta de build não estava varrendo todos os arquivos, algo que só apareceria depois de já estar em produção.
+
+O último passo foi uma trava no CI: uma regra de lint que falha qualquer pull request que reintroduza uma cor cravada ou um valor de espaçamento fora da grade. Ligamos essa trava só depois do grosso da migração estar pronto, de propósito, para não atrasar o time no meio do processo."
+
+Ainda está em andamento. O que começou como "corrigir a divergência" virou, sem perceber, uma migração completa de design system. Então a lição que fica é essa: sempre execute o básico e estruture direito antes de escrever código com IA.`,
   }
 ]
 
